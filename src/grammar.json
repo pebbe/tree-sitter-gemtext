@@ -2,11 +2,53 @@
   "name": "gemtext",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_part"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_blank"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_part"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_blank"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_part"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_blank"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "_part": {
       "type": "CHOICE",
@@ -42,10 +84,6 @@
         {
           "type": "SYMBOL",
           "name": "text"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[ \\t\\r]*\\n"
         }
       ]
     },
@@ -67,8 +105,8 @@
       "value": "#[ \\t]+"
     },
     "head_1_text": {
-      "type": "SYMBOL",
-      "name": "_text"
+      "type": "PATTERN",
+      "value": ".*"
     },
     "head_2": {
       "type": "SEQ",
@@ -88,8 +126,8 @@
       "value": "##[ \\t]+"
     },
     "head_2_text": {
-      "type": "SYMBOL",
-      "name": "_text"
+      "type": "PATTERN",
+      "value": ".*"
     },
     "head_3": {
       "type": "SEQ",
@@ -109,8 +147,8 @@
       "value": "###[ \\t]+"
     },
     "head_3_text": {
-      "type": "SYMBOL",
-      "name": "_text"
+      "type": "PATTERN",
+      "value": ".*"
     },
     "pre": {
       "type": "SEQ",
@@ -118,6 +156,10 @@
         {
           "type": "SYMBOL",
           "name": "pre_start"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_blank"
         },
         {
           "type": "CHOICE",
@@ -137,13 +179,6 @@
         }
       ]
     },
-    "pre_body": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_pre_line"
-      }
-    },
     "pre_start": {
       "type": "PATTERN",
       "value": "```.*"
@@ -152,66 +187,98 @@
       "type": "PATTERN",
       "value": "```.*"
     },
-    "_pre_line": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[^`\\n].*\\n"
-        },
-        {
-          "type": "PATTERN",
-          "value": "`[^`\\n].*\\n"
-        },
-        {
-          "type": "PATTERN",
-          "value": "``[^`\\n]*\\n"
-        }
-      ]
+    "pre_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^`\\n].*\\n"
+          },
+          {
+            "type": "PATTERN",
+            "value": "`[^`\\n].*\\n"
+          },
+          {
+            "type": "PATTERN",
+            "value": "``[^`\\n]*\\n"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\n"
+          }
+        ]
+      }
     },
     "item": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "* "
+          "type": "SYMBOL",
+          "name": "item_mark"
         },
         {
-          "type": "PATTERN",
-          "value": ".*"
+          "type": "SYMBOL",
+          "name": "item_text"
         }
       ]
+    },
+    "item_mark": {
+      "type": "PATTERN",
+      "value": "\\*[ \\t]*"
+    },
+    "item_text": {
+      "type": "PATTERN",
+      "value": ".*"
     },
     "quote": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "> "
+          "type": "SYMBOL",
+          "name": "quote_mark"
         },
         {
-          "type": "PATTERN",
-          "value": ".*"
+          "type": "SYMBOL",
+          "name": "quote_text"
         }
       ]
+    },
+    "quote_mark": {
+      "type": "PATTERN",
+      "value": ">[ \\t]*"
+    },
+    "quote_text": {
+      "type": "PATTERN",
+      "value": ".*"
     },
     "link": {
       "type": "SEQ",
       "members": [
         {
           "type": "PATTERN",
-          "value": "=>[ \\t]+"
+          "value": "=>[ \\t\\r]*"
         },
         {
           "type": "SYMBOL",
-          "name": "_url"
+          "name": "url"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_date"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_space"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "link_date"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -222,8 +289,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_description"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_space"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "link_text"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -232,7 +308,7 @@
         }
       ]
     },
-    "_url": {
+    "url": {
       "type": "CHOICE",
       "members": [
         {
@@ -264,7 +340,7 @@
     },
     "url_extern": {
       "type": "PATTERN",
-      "value": "gemini:\\/\\/[^ \\t\\r\\n]*"
+      "value": "gemini:\\/\\/[^ \\t\\r\\n]+"
     },
     "url_foreign": {
       "type": "SEQ",
@@ -273,7 +349,7 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
+              "type": "PATTERN",
               "value": "mailto:"
             },
             {
@@ -284,41 +360,15 @@
         },
         {
           "type": "PATTERN",
-          "value": "[^ \\t\\r\\n]*"
+          "value": "[^ \\t\\r\\n]+"
         }
       ]
     },
-    "_date": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[ \\t]+"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "date"
-        }
-      ]
-    },
-    "date": {
+    "link_date": {
       "type": "PATTERN",
       "value": "\\d{4}-\\d\\d-\\d\\d"
     },
-    "_description": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[ \\t]+"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "description"
-        }
-      ]
-    },
-    "description": {
+    "link_text": {
       "type": "SEQ",
       "members": [
         {
@@ -344,17 +394,19 @@
         }
       ]
     },
-    "_text": {
+    "_space": {
       "type": "PATTERN",
-      "value": "[^ \\t\\r\\n](.*[^ \\t\\r\\n])?"
+      "value": "[ \\t\\r]+"
+    },
+    "_blank": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "PATTERN",
+        "value": "[ \\t\\r]*\\n"
+      }
     }
   },
-  "extras": [
-    {
-      "type": "PATTERN",
-      "value": "\\s"
-    }
-  ],
+  "extras": [],
   "conflicts": [],
   "precedences": [],
   "externals": [],

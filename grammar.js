@@ -1,8 +1,19 @@
 module.exports = grammar({
   name: 'gemtext',
-
+  extras: $ => [],
   rules: {
-    source_file: $ => repeat($._part),
+
+    source_file: $ => seq(
+      optional($._blank),
+      $._part,
+      repeat(
+        seq(
+          $._blank,
+          $._part
+        )
+      ),
+      optional($._blank)
+    ),
 
     _part: $ => choice(
       $.head_1,
@@ -13,7 +24,6 @@ module.exports = grammar({
       $.quote,
       $.link,
       $.text,
-      /[ \t\r]*\n/ 
     ),
 
     head_1: $ => seq(
@@ -21,91 +31,81 @@ module.exports = grammar({
       $.head_1_text
     ),
     head_1_mark: $ => /#[ \t]+/,
-    head_1_text: $ => $._text,
+    head_1_text: $ => /.*/,
 
     head_2: $ => seq(
       $.head_2_mark,
       $.head_2_text
     ),
     head_2_mark: $ => /##[ \t]+/,
-    head_2_text: $ => $._text,
+    head_2_text: $ => /.*/,
 
     head_3: $ => seq(
       $.head_3_mark,
       $.head_3_text
     ),
     head_3_mark: $ => /###[ \t]+/,
-    head_3_text: $ => $._text,
+    head_3_text: $ => /.*/,
 
     pre: $ => seq(
       $.pre_start,
+      $._blank,
       optional($.pre_body),
       $.pre_end
     ),
-
-    pre_body: $ => repeat1($._pre_line),
-
     pre_start: $ => /```.*/,
-
     pre_end: $ => /```.*/,
-
-    _pre_line: $ => choice(
-      /[^`\n].*\n/,
-      /`[^`\n].*\n/,
-      /``[^`\n]*\n/
+    pre_body: $ => repeat1(
+      choice(
+        /[^`\n].*\n/,
+        /`[^`\n].*\n/,
+        /``[^`\n]*\n/,
+        /\n/
+      )
     ),
 
     item: $ => seq(
-      '* ',
-      /.*/
+      $.item_mark,
+      $.item_text
     ),
+    item_mark: $ => /\*[ \t]*/,
+    item_text: $ => /.*/,
 
     quote: $ => seq(
-      '> ',
-      /.*/
+      $.quote_mark,
+      $.quote_text
     ),
+    quote_mark: $ => />[ \t]*/,
+    quote_text: $ => /.*/,
 
     link: $ => seq(
-      /=>[ \t]+/,
-      $._url,
-      optional($._date),
-      optional($._description),
+      /=>[ \t\r]*/,
+      $.url,
+      optional(seq($._space, $.link_date)),
+      optional(seq($._space, $.link_text)),
     ),
 
-    _url: $ => choice(
+    url: $ => choice(
       $.url_intern,
       $.url_extern,
       $.url_foreign
     ),
-
     url_intern: $ => seq(
       /[^ \t\r\n]/,
       /[^ \t\r\n]*/
     ),
-
-    url_extern: $ => /gemini:\/\/[^ \t\r\n]*/,
-
+    url_extern: $ => /gemini:\/\/[^ \t\r\n]+/,
     url_foreign: $ => seq(
       choice(
-        "mailto:",
+        /mailto:/,
         /[a-z]+:\/\//
       ),
-      /[^ \t\r\n]*/
+      /[^ \t\r\n]+/
     ),
 
-    _date: $ => seq(
-      /[ \t]+/,
-      $.date
-    ),
+    link_date: $ => /\d{4}-\d\d-\d\d/,
 
-    date: $ => /\d{4}-\d\d-\d\d/,
-
-    _description: $ => seq(
-      /[ \t]+/,
-      $.description
-    ),
-
-    description: $ => seq(
+    link_text: $ => seq(
       /./,
       /.*/
     ),
@@ -115,7 +115,8 @@ module.exports = grammar({
       /.*/
     ),
 
-    _text: $ => /[^ \t\r\n](.*[^ \t\r\n])?/
+    _space: $ => /[ \t\r]+/,
+    _blank: $ => repeat1(/[ \t\r]*\n/)
 
   }
 });
