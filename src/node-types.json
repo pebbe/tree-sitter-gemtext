@@ -1,0 +1,248 @@
+[
+  {
+    "type": "description",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "head_1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "head_1_mark",
+          "named": true
+        },
+        {
+          "type": "head_1_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "head_1_text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "head_2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "head_2_mark",
+          "named": true
+        },
+        {
+          "type": "head_2_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "head_2_text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "head_3",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "head_3_mark",
+          "named": true
+        },
+        {
+          "type": "head_3_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "head_3_text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "item",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "link",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "date",
+          "named": true
+        },
+        {
+          "type": "description",
+          "named": true
+        },
+        {
+          "type": "url_extern",
+          "named": true
+        },
+        {
+          "type": "url_foreign",
+          "named": true
+        },
+        {
+          "type": "url_intern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pre",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "pre_body",
+          "named": true
+        },
+        {
+          "type": "pre_end",
+          "named": true
+        },
+        {
+          "type": "pre_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pre_body",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "pre_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "pre_start",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "quote",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "head_1",
+          "named": true
+        },
+        {
+          "type": "head_2",
+          "named": true
+        },
+        {
+          "type": "head_3",
+          "named": true
+        },
+        {
+          "type": "item",
+          "named": true
+        },
+        {
+          "type": "link",
+          "named": true
+        },
+        {
+          "type": "pre",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "url_foreign",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "url_intern",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "* ",
+    "named": false
+  },
+  {
+    "type": "> ",
+    "named": false
+  },
+  {
+    "type": "date",
+    "named": true
+  },
+  {
+    "type": "head_1_mark",
+    "named": true
+  },
+  {
+    "type": "head_2_mark",
+    "named": true
+  },
+  {
+    "type": "head_3_mark",
+    "named": true
+  },
+  {
+    "type": "mailto:",
+    "named": false
+  },
+  {
+    "type": "url_extern",
+    "named": true
+  }
+]
