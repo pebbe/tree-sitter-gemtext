@@ -17,8 +17,17 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_part"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "wrap"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "nowrap"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -30,8 +39,17 @@
                 "name": "_blank"
               },
               {
-                "type": "SYMBOL",
-                "name": "_part"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "wrap"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "nowrap"
+                  }
+                ]
               }
             ]
           }
@@ -50,7 +68,7 @@
         }
       ]
     },
-    "_part": {
+    "wrap": {
       "type": "CHOICE",
       "members": [
         {
@@ -64,10 +82,6 @@
         {
           "type": "SYMBOL",
           "name": "head_3"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pre"
         },
         {
           "type": "SYMBOL",
@@ -86,6 +100,10 @@
           "name": "text"
         }
       ]
+    },
+    "nowrap": {
+      "type": "SYMBOL",
+      "name": "pre"
     },
     "head_1": {
       "type": "SEQ",
@@ -275,8 +293,17 @@
                   "name": "_space"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "link_date"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "link_date"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "link_text"
+                    }
+                  ]
                 }
               ]
             },
@@ -366,14 +393,23 @@
     },
     "link_date": {
       "type": "PATTERN",
-      "value": "\\d{4}-\\d\\d-\\d\\d"
+      "value": "\\d{4}-[01]\\d-[0-3]\\d"
     },
     "link_text": {
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "."
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "."
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\d{4}-[01]\\d-[0-3]\\d\\S"
+            }
+          ]
         },
         {
           "type": "PATTERN",

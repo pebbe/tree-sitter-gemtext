@@ -5,26 +5,27 @@ module.exports = grammar({
 
     source_file: $ => seq(
       optional($._blank),
-      $._part,
+      choice($.wrap, $.nowrap),
       repeat(
         seq(
           $._blank,
-          $._part
+          choice($.wrap, $.nowrap)
         )
       ),
       optional($._blank)
     ),
 
-    _part: $ => choice(
+    wrap: $ => choice(
       $.head_1,
       $.head_2,
       $.head_3,
-      $.pre,
       $.item,
       $.quote,
       $.link,
       $.text,
     ),
+
+    nowrap: $ => $.pre,
 
     head_1: $ => seq(
       $.head_1_mark,
@@ -81,7 +82,7 @@ module.exports = grammar({
     link: $ => seq(
       /=>[ \t\r]*/,
       $.url,
-      optional(seq($._space, $.link_date)),
+      optional(seq($._space, choice($.link_date, $.link_text))),
       optional(seq($._space, $.link_text)),
     ),
 
@@ -103,10 +104,10 @@ module.exports = grammar({
       /[^ \t\r\n]+/
     ),
 
-    link_date: $ => /\d{4}-\d\d-\d\d/,
+    link_date: $ => /\d{4}-[01]\d-[0-3]\d/,
 
     link_text: $ => seq(
-      /./,
+      choice(/./, /\d{4}-[01]\d-[0-3]\d\S/),
       /.*/
     ),
 
