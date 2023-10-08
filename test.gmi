@@ -1,33 +1,49 @@
-# Header
+# Header: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
-Just some text
+This is just some text to test gemini clients. See:
 
-```test
+=> gemini://geminiprotocol.net/docs/specification.gmi Project Gemini → 5 The text/gemini media type
+=> gemini://geminiprotocol.net/docs/gemtext-specification.gmi Gemini hypertext format, aka "gemtext", specification
+
+
+```label
 some
   preformatted
     text
   ```
 still
   preformatted
+    Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 ```
 
-## Subheader
+## Subheader: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
-### Subsubheader
+### Subsubheader: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
-###Not a header
+###I Don't Think This Should Be a Header But It Is.
 
-#### Not a header
+#### I Don't Think This Should Be a Header But It Is.
 
-> quote
+> quote line 1: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+>quote line 2: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
-* item 1
-* item 2
+
+* item 1: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+* item 2: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+
+*not an item
+
+This is inconsistent. Items need a space after the marker, but headings, quotes and links don't.
+
 
 => /test.gmi internal link
 => gemini://bisse.nl/ 2023-09-23, external link without a date
 => https://bisse.nl/ 1800-01-01 foreign link with date
 => mailto:someone@example.com 2000-22-31 foreign link with invalid date
+
+For dates, see:
+
+=> gemini://geminiprotocol.net/docs/companion/subscription.gmi Subscribing to Gemini pages
 
 Some text 1999-12-31 with no particular date
 
