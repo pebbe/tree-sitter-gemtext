@@ -6,6 +6,8 @@ Gemtext is the markup format used in [Project Gemini](https://geminiprotocol.net
 
 **[Work in progress](https://github.com/nvim-treesitter/nvim-treesitter/issues/2282#issuecomment-1732372719)!**
 
+TODO: [stuff](https://github.com/pebbe/tree-sitter-gemtext/issues/1)
+
 For another implementation, see: https://git.sr.ht/~sfr/tree-sitter-gemini
 
 ----
