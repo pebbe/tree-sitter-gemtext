@@ -1,0 +1,52 @@
+# Header
+
+Just some text
+
+```test
+some
+  preformatted
+    text
+  ```
+still
+  preformatted
+```
+
+## Subheader
+
+### Subsubheader
+
+###Not a header
+
+#### Not a header
+
+> quote
+
+* item 1
+* item 2
+
+=> /test.gmi internal link
+=> gemini://bisse.nl/ 2023-09-23, external link without a date
+=> https://bisse.nl/ 1800-01-01 foreign link with date
+=> mailto:someone@example.com 2000-22-31 foreign link with invalid date
+
+Some text 1999-12-31 with no particular date
+
+ # not a header
+ ## not a header
+ ### not a header
+ * not an item
+ > not a quote
+ > gemini://example.com not a link
+
+```
+    A
+# not a header
+    B
+* not an item
+    C
+> not a quote
+    D
+> gemini://example.com not a link
+    E
+this block isn't closed yet
+    F
