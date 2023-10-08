@@ -1,10 +1,12 @@
-# Header: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+# Heading: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
 This is just some text to test gemini clients. See:
 
 => gemini://geminiprotocol.net/docs/specification.gmi Project Gemini → 5 The text/gemini media type
 => gemini://geminiprotocol.net/docs/gemtext-specification.gmi Gemini hypertext format, aka "gemtext", specification
 
+Why is the content type text/gemini and not text/gemtext?
+We have text/html served over http, not text/http.
 
 ```label
 some
@@ -16,13 +18,13 @@ still
     Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 ```
 
-## Subheader: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+## Subheading: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
-### Subsubheader: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+### Subsubheading: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 
-###I Don't Think This Should Be a Header But It Is.
+###I Don't Think This Should Be a Heading But It Is.
 
-#### I Don't Think This Should Be a Header But It Is.
+#### I Don't Think This Should Be a Heading But It Is.
 
 > quote line 1: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 >quote line 2: Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
@@ -47,16 +49,16 @@ For dates, see:
 
 Some text 1999-12-31 with no particular date
 
- # not a header
- ## not a header
- ### not a header
+ # not a heading
+ ## not a heading
+ ### not a heading
  * not an item
  > not a quote
- > gemini://example.com not a link
+ => gemini://example.com not a link
 
 ```
     A
-# not a header
+# not a heading
     B
 * not an item
     C
