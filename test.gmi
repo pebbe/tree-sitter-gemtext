@@ -42,6 +42,9 @@ This is inconsistent. Items need a space after the marker, but headings, quotes 
 => gemini://bisse.nl/ 2023-09-23, external link without a date
 => https://bisse.nl/ 1800-01-01 foreign link with date
 => mailto:someone@example.com 2000-22-31 foreign link with invalid date
+=> /date/test.gmi 1900-02-31
+=> Should this be a link?
+=>http://this.is.a.link
 
 For dates, see:
 
